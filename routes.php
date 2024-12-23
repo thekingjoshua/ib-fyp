@@ -5,4 +5,4 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
     $baseURI = ['', ''];
 }
 
-$router->get("{$baseURI[1]}/", 'HomeController@index');
+$router->get("{$baseURI[1]}/", 'HomeController@login');
