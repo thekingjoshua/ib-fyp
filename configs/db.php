@@ -1,6 +1,7 @@
 <?php 
 // Check if it running on a local server
-if ($_SERVER['COMPUTERNAME'] === 'KJOSH') {
+// var_dump($_SERVER)G
+if ($_SERVER['REQUEST_URI'] === "/ib-fyp/") {
     return [
         'host' => 'localhost',
         'port' => 3306,
