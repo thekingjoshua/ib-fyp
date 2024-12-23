@@ -1,0 +1,19 @@
+{
+    "name": "thekingjoshua/grab-back",
+    "description": "Client's Application",
+    "authors": [
+        {
+            "name": "KingJoshua Erughe",
+            "email": "kingjayeriughe@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
