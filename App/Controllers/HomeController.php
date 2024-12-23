@@ -24,4 +24,8 @@ class HomeController
     {
         loadView('home');
     }
+    public function login()
+    {
+        loadView('login');
+    }
 }
