@@ -6,3 +6,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 }
 
 $router->get("{$baseURI[1]}/", 'HomeController@login');
+
+
+
+$router->post("{$baseURI[1]}/login", 'HomeController@auth_login');
