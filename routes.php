@@ -6,6 +6,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 }
 
 $router->get("{$baseURI[1]}/", 'HomeController@login');
+$router->get("{$baseURI[1]}/stage-one", 'HomeController@stage_one');
 
 
 
