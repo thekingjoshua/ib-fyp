@@ -26,6 +26,31 @@ class HomeController
     }
     public function login()
     {
+        // Email = 'neptunian48@gmail.com'
+        // Password = 'Percy$126'
         loadView('login');
+    }
+    public function auth_login()
+    {
+        $successMessages = [];
+        $errorMessages = [];
+
+        $enteredEmail = $_POST['email'];
+        $enteredPassword = $_POST['password'];
+
+        $validEmail = 'neptunian48@gmail.com';
+        $validPassword = 'Percy$126';
+
+        // CHECKING IF THE ENTERED EMAIL AND PASSWORD MATCHES
+        if (Validation::match($validEmail, $enteredEmail)) {
+            $successMessages[] = 'Login Successful';
+        }else{
+            $errorMessages[] = 'Invalid Credentials';
+        };
+
+        loadView('login', [
+            "successMessages" => $successMessages,
+            "errorMessages" => $errorMessages,
+        ]);
     }
 }
