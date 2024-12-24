@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
     <meta charset="utf-8">
@@ -28,13 +28,20 @@
             <div class="row vh-100">
                 <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
+                        <?php
+                        if (!empty($successMessages)) {
+                            loadPartial('message', [
+                                "successMessages" => $successMessages
+                            ]);
+                        }
+                        ?>
                         <div class="text-center mt-4">
                             <h1 class="h2">Login</h1>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-3">
-                                    <form>
+                                    <form action="login" method="POST">
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
                                             <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
@@ -44,7 +51,7 @@
                                             <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
                                         </div>
                                         <div class="d-grid gap-2 mt-3">
-                                            <a class='btn btn-lg btn-primary' href='index.html'>Sign in</a>
+                                            <button class="btn btn-lg btn-primary" type="submit">Login</button>
                                         </div>
                                     </form>
                                 </div>
