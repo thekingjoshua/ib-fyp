@@ -29,10 +29,13 @@
                 <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
                         <?php
-                        if (!empty($successMessages)) {
-                            loadPartial('message', [
-                                "successMessages" => $successMessages
-                            ]);
+                        if (isset($successMessages) || isset($errorMessages)) {
+                            if (!empty($successMessages || $errorMessages)) {
+                                loadPartial('message', [
+                                    "successMessages" => $successMessages,
+                                    "errorMessages" => $errorMessages
+                                ]);
+                            }
                         }
                         ?>
                         <div class="text-center mt-4">
