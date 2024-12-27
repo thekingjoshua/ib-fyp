@@ -53,4 +53,7 @@ class HomeController
             "errorMessages" => $errorMessages,
         ]);
     }
+    public function stage_one(){
+        loadView('stage-one');
+    }
 }
