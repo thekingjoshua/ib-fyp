@@ -50,7 +50,7 @@
 							<div class="w-100">
 								<div class="row">
 									<div class="col-sm-6">
-										<a href="" style="text-decoration: none;">
+										<a href="http://localhost/ib-fyp/dashboard/upload-original" target="_blank" style="text-decoration: none;">
 											<div class="card">
 												<div class="card-body">
 													<div class="row">
