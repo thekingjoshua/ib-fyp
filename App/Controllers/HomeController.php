@@ -56,4 +56,8 @@ class HomeController
     public function stage_one(){
         loadView('stage-one');
     }
+    public function dashboard()
+    {
+        loadView('home');
+    }
 }
