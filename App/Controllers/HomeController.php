@@ -44,6 +44,7 @@ class HomeController
         // CHECKING IF THE ENTERED EMAIL AND PASSWORD MATCHES
         if (Validation::match($validEmail, $enteredEmail)) {
             $successMessages[] = 'Login Successful';
+            redirect('./dashboard');
         }else{
             $errorMessages[] = 'Invalid Credentials';
         };
@@ -59,5 +60,9 @@ class HomeController
     public function dashboard()
     {
         loadView('home');
+    }
+    public function uploadOriginal()
+    {
+        loadView('upload-original');
     }
 }
