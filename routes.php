@@ -9,6 +9,7 @@ $router->get("{$baseURI[1]}/", 'HomeController@login');
 $router->get("{$baseURI[1]}/dashboard", 'HomeController@dashboard');
 $router->get("{$baseURI[1]}/stage-one", 'HomeController@stage_one');
 $router->get("{$baseURI[1]}/dashboard/upload-original", 'HomeController@uploadOriginal');
+$router->get("{$baseURI[1]}/dashboard/original-files", 'HomeController@originalFiles');
 
 
 
