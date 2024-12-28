@@ -45,7 +45,7 @@ class HomeController
         if (Validation::match($validEmail, $enteredEmail)) {
             $successMessages[] = 'Login Successful';
             redirect('./dashboard');
-        }else{
+        } else {
             $errorMessages[] = 'Invalid Credentials';
         };
 
@@ -54,7 +54,8 @@ class HomeController
             "errorMessages" => $errorMessages,
         ]);
     }
-    public function stage_one(){
+    public function stage_one()
+    {
         loadView('stage-one');
     }
     public function dashboard()
@@ -64,5 +65,43 @@ class HomeController
     public function uploadOriginal()
     {
         loadView('upload-original');
+    }
+    public function submitOriginalFile()
+    {
+        $caseFileName = $_POST['case_file_name'];
+        $investigatorName = $_POST['investigator_name'];
+
+        $original_file = $_FILES['original_file']['name'];
+        $original_file_temp = $_FILES['original_file']['tmp_name'];
+
+        $fullFileName = date('Y-m-d_H-i-s') . $original_file;
+        // DEFINING THE VALID FILE TYPES
+        // 0: .txt file
+        // 1: .pdf file
+        // 2: .docx file
+        // 3: .xlsx file
+        $allowed_types = ['text/plain', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+        $file_type = mime_content_type($original_file_temp);
+
+        // HASHING THE UPLOADED FILE USING SHA-512 ALGORITHM
+        $originalFileHash = hash('sha512', $fullFileName);
+        $params = [
+            "original_file_hash" => $originalFileHash,
+            "case_file_name" => $caseFileName,
+            "investigator_name" => $investigatorName,
+            "original_file_path" => "uploads/$fullFileName"
+        ];
+        if (in_array($file_type, $allowed_types)) {
+            // UPLOADING THE FILE TO THE UPLOAD FOLDER IF IT IS A VALID FILE TYPE
+            move_uploaded_file($original_file_temp, "uploads/$fullFileName");
+
+            // SUBMITTING THE FILE TO THE DATABASE IF IT IS A VALID FILE TYPE
+            $this->db->query("INSERT INTO `original_case_files` (`file_hash`, `case_file_name`, `investigator`, `case_file_path`) VALUES (:original_file_hash, :case_file_name, :investigator_name, :original_file_path)", $params);
+            // 
+            loadView('upload-original');
+        } else {
+            // REDIRECTING THE USER TO THE DASHBOARD
+            redirect('http://localhost/ib-fyp/dashboard');
+        }
     }
 }
