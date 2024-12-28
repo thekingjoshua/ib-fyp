@@ -7,12 +7,130 @@
     <title>Images Uploader (Drag &amp; browse) </title>
 
     <link class="js-stylesheet" href="css/light.css" rel="stylesheet">
-    <link class="js-stylesheet" href="css/app.css" rel="stylesheet">
     <link class="js-stylesheet" href="css/boxicon.min.css" rel="stylesheet">
+    <link class="js-stylesheet" href="css/app.css" rel="stylesheet">
+    <style>
+        :root {
+            --prm-color: #0381ff;
+            --prm-gray: #b1b1b1;
+        }
+
+        /*  unnecessary */
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        section {
+            width: 100%;
+        }
+
+        /*  unnecessary finished*/
+
+        /* CSS */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .step-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--prm-gray);
+            transition: .4s;
+        }
+
+        .step-button[aria-expanded="true"] {
+            width: 60px;
+            height: 60px;
+            background-color: var(--prm-color);
+            color: #fff;
+        }
+
+        .done {
+            background-color: var(--prm-color);
+            color: #fff;
+        }
+
+        .step-item {
+            z-index: 10;
+            text-align: center;
+        }
+
+        #progress {
+            -webkit-appearance: none;
+            position: absolute;
+            width: 95%;
+            z-index: 5;
+            height: 10px;
+            margin-left: 18px;
+            margin-bottom: 18px;
+        }
+
+        /* to customize progress bar */
+        #progress::-webkit-progress-value {
+            background-color: var(--prm-color);
+            transition: .5s ease;
+        }
+
+        #progress::-webkit-progress-bar {
+            background-color: var(--prm-gray);
+
+        }
+
+        a {
+            background-color: #ffff0047;
+        }
+    </style>
 
 </head>
 
 <body translate="no">
+    <section>
+        <div class="container mt-4">
+            <div class="accordion" id="accordionExample">
+                <div class="steps">
+                    <progress id="progress" value=0 max=100></progress>
+                    <div class="step-item">
+                        <button class="step-button text-center collapsed done" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            1
+                        </button>
+                        <div class="step-title">
+                            Stage One
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <button class="step-button text-center" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2
+                        </button>
+                        <div class="step-title">
+                            Stage Two
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            3
+                        </button>
+                        <div class="step-title">
+                            Stage Three
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Upload Area -->
     <div id="uploadArea" class="upload-area">
         <!-- Header -->
@@ -58,7 +176,7 @@
         </div>
         <!-- End File Details -->
     </div>
-    <div class="d-grid gap-2 mt-3" style="width: 20%;">
+    <div class="d-grid gap-2 mb-3" style="width: 20%;">
         <button class="btn btn-lg btn-primary mt-5" type="submit">Upload</button>
     </div>
     <!-- End Upload Area -->
