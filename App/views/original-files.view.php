@@ -12,67 +12,60 @@
 	<title>Dashboard</title>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet">
-	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
+	<link class="js-stylesheet" href="../../../ib-fyp/css/light.css" rel="stylesheet">
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
     <div class="wrapper">
-        <?php loadPartial('sidebar') ?>
         <div class="main">
-            <?php loadPartial('dash_navbar') ?>
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item">
+							<a class="nav-icon js-fullscreen d-none d-lg-block" href="#">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="maximize"></i>
+								</div>
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-icon pe-md-0 dropdown-toggle" href="#" data-bs-toggle="dropdown">
+								<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded" alt="Admin" />
+							</a>
+							<div class="dropdown-menu dropdown-menu-end">
+								<a class="dropdown-item" href="#">Log out</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
             <main class="content">
                 <div class="container-fluid p-0">
                     <div class="mb-3">
-                        <h1 class="h3 d-inline align-middle">Users</h1>
+                        <h1 class="h3 d-inline align-middle">Original Case Files</h1>
                     </div>
                     <div class="card">
                         <div class="card-header pb-0">
-                            <h5 class="card-title mb-0">Users</h5>
+                            <h5 class="card-title mb-0">Original Case Files</h5>
                         </div>
                         <div class="card-body">
                             <table id="datatables-orders" class="table table-responsive table-striped" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Registration Date</th>
-                                        <th>Balance</th>
+                                        <th>Case File Name</th>
+                                        <th>Case File Hash</th>
+                                        <th>Investigator</th>
                                         <th>Verification Status</th>
-                                        <th>Actions</th>
+                                        <th>Date Uploaded</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($users as $index => $user): ?>
                                         <tr>
-                                            <td><?= $user->name ?></td>
-                                            <td><?= $user->created_at ?></td>
-                                            <td>$<?= numberFormatter($user->user_acct_balance) ?></td>
-                                            <td>
-                                            <?php 
-                                                    if($user->verify_status === 'Not Verified'){
-                                                        echo "<span class=\"badge badge-danger-light\">Not Verified</span></td>";
-                                                    }else{
-                                                        echo "<span class=\"badge badge-success-light\">Verified</span></td>";
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <a href="./edit/user/<?= $user->id ?>" class="btn btn-primary btn-sm">Edit</a>
-                                                <?php 
-                                                    if($user->verify_status === 'Not Verified'){
-                                                        echo "<a href=\"./verify/user/$user->id\" class=\"btn btn-primary btn-sm\">Verify User</a>"; 
-                                                    }else{
-                                                        echo "<a href=\"./invalidate/user/$user->id\" class=\"btn btn-primary btn-sm\">Invalidate User</a>";
-                                                    }
-                                                ?>
-                                                <?php 
-                                                    if($user->paid_license === 'Not Verified'){
-                                                        echo "<a href=\"./verify/license/$user->id\" class=\"btn btn-primary btn-sm\">Validate License</a>"; 
-                                                    }else{
-                                                        echo "<a href=\"./invalidate/license/$user->id\" class=\"btn btn-primary btn-sm\">Invalidate License</a>";
-                                                    }
-                                                ?>
-                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -84,11 +77,11 @@
         </div>
     </div>
 
-	<script src="js/app.js"></script>
+	<script src="../../../ib-fyp/js/app.js"></script>
 
 
 
-    <script src="https://cdn.grabback.org/admin/dashboard/js/datatables.js"></script>
+    <script src="../../../ib-fyp/js/datatables.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
