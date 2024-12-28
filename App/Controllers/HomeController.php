@@ -104,4 +104,12 @@ class HomeController
             redirect('http://localhost/ib-fyp/dashboard');
         }
     }
+    public function originalFiles()
+    {
+        $originalCaseFiles = $this->db->query("SELECT * FROM original_case_files")->fetchAll();
+
+        loadView('original-files', [
+            "originalCaseFiles" => $originalCaseFiles 
+        ]);
+    }
 }
