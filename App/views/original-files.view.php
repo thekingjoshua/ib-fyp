@@ -52,20 +52,18 @@
                                 <thead>
                                     <tr>
                                         <th>Case File Name</th>
-                                        <th>Case File Hash</th>
                                         <th>Investigator</th>
-                                        <th>Verification Status</th>
                                         <th>Date Uploaded</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach($originalCaseFiles as $originalCaseFile): ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?= $originalCaseFile->case_file_name ?></td>
+                                            <td><?= $originalCaseFile->investigator ?></td>
+                                            <td><?= $originalCaseFile->date_uploaded ?></td>
                                         </tr>
+                                        <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
