@@ -88,6 +88,25 @@
 										</a>
 									</div>
 									<div class="col-sm-6">
+										<a href="http://localhost/ib-fyp/dashboard/original-files" style="text-decoration: none;">
+											<div class="card">
+												<div class="card-body">
+													<div class="row">
+														<div class="col mt-0">
+															<h5 class="card-title">View all original case files</h5>
+														</div>
+														<div class="col-auto">
+															<div class="stat text-primary">
+																<i class="align-middle" data-feather="database"></i>
+															</div>
+														</div>
+													</div>
+													<h1 class="mt-1 mb-3">View all original case files</h1>
+												</div>
+											</div>
+										</a>
+									</div>
+									<div class="col-sm-6">
 										<a href="" style="text-decoration: none;">
 											<div class="card">
 												<div class="card-body">
