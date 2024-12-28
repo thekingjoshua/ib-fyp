@@ -13,3 +13,4 @@ $router->get("{$baseURI[1]}/dashboard/upload-original", 'HomeController@uploadOr
 
 
 $router->post("{$baseURI[1]}/login", 'HomeController@auth_login');
+$router->post("{$baseURI[1]}/dashboard/submit/original-file", 'HomeController@submitOriginalFile');
