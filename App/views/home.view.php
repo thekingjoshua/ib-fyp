@@ -140,7 +140,7 @@
 										<tr>
 											<th>File Name</th>
 											<th>Integrity (%)</th>
-											<th>Inspector Name</th>
+											<th>Investigator's Name</th>
 											<th>Date Analysed</th>
 											<th class="d-none d-xl-table-cell">Action</th>
 										</tr>
