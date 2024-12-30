@@ -117,7 +117,29 @@ class HomeController
         $originalCaseFiles = $this->db->query("SELECT * FROM original_case_files")->fetchAll();
 
         loadView('original-files', [
-            "originalCaseFiles" => $originalCaseFiles 
+            "originalCaseFiles" => $originalCaseFiles
         ]);
+    }
+    public function analyse_stage_one()
+    {
+        // DEFINING THE VALID FILE TYPES
+        // 0: .txt file
+        // 1: .pdf file
+        // 2: .docx file
+        // 3: .xlsx file
+        $allowed_types = ['text/plain', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+
+        $stage_one_file = $_FILES['stage_one_file']['name'];
+
+        if (in_array($stage_one_file, $allowed_types)) {
+            // IF THE UPLOADED FILE
+            $stage_one_file_hash = hash('sha512', $stage_one_file);
+            Session::set('stage_one_file_hash', $stage_one_file_hash);
+        } else {
+            // REDIRECTING THE USER TO THE DASHBOARD
+            redirect('http://localhost/ib-fyp/dashboard/analysis/stage-one');
+        }
+
+        redirect('http://localhost/ib-fyp/dashboard/analysis/stage-two');
     }
 }
