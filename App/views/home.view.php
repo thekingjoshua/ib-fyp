@@ -69,7 +69,7 @@
 										</a>
 									</div>
 									<div class="col-sm-6">
-										<a href="" style="text-decoration: none;">
+										<a href="http://localhost/ib-fyp/stage-one" style="text-decoration: none;">
 											<div class="card">
 												<div class="card-body">
 													<div class="row">
