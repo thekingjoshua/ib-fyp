@@ -17,3 +17,4 @@ $router->get("{$baseURI[1]}/dashboard/original-files", 'HomeController@originalF
 
 $router->post("{$baseURI[1]}/login", 'HomeController@auth_login');
 $router->post("{$baseURI[1]}/dashboard/submit/original-file", 'HomeController@submitOriginalFile');
+$router->post("{$baseURI[1]}/dashboard/analysis", 'HomeController@submitStageOne');
