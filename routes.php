@@ -21,3 +21,6 @@ $router->get("{$baseURI[1]}/dashboard/analysis/stage-three", 'HomeController@sta
 $router->post("{$baseURI[1]}/login", 'HomeController@auth_login');
 $router->post("{$baseURI[1]}/dashboard/submit/original-file", 'HomeController@submitOriginalFile');
 $router->post("{$baseURI[1]}/dashboard/analysis", 'HomeController@submitStageOne');
+
+
+$router->post("{$baseURI[1]}/dashboard/analysis/stage-one", 'HomeController@analyse_stage_one');
