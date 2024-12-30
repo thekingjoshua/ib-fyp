@@ -14,6 +14,7 @@ $router->get("{$baseURI[1]}/dashboard/upload-original", 'HomeController@uploadOr
 $router->get("{$baseURI[1]}/dashboard/original-files", 'HomeController@originalFiles');
 $router->get("{$baseURI[1]}/dashboard/analysis/stage-one", 'HomeController@stage_one');
 $router->get("{$baseURI[1]}/dashboard/analysis/stage-two", 'HomeController@stage_two');
+$router->get("{$baseURI[1]}/dashboard/analysis/stage-three", 'HomeController@stage_three');
 
 
 
