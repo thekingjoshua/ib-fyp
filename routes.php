@@ -24,3 +24,4 @@ $router->post("{$baseURI[1]}/dashboard/analysis", 'HomeController@submitStageOne
 
 
 $router->post("{$baseURI[1]}/dashboard/analysis/stage-one", 'HomeController@analyse_stage_one');
+$router->post("{$baseURI[1]}/dashboard/analysis/stage-two", 'HomeController@analyse_stage_two');
