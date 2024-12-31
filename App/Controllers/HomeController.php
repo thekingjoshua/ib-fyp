@@ -60,6 +60,7 @@ class HomeController
     }
     public function stage_two()
     {
+        var_dump($_SESSION);
         loadView('stage-two');
     }
     public function stage_three()
@@ -130,16 +131,16 @@ class HomeController
         $allowed_types = ['text/plain', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
 
         $stage_one_file = $_FILES['stage_one_file']['name'];
+        $stage_one_file_type = $_FILES['stage_one_file']['type'];
 
-        if (in_array($stage_one_file, $allowed_types)) {
-            // IF THE UPLOADED FILE
+        if (in_array($stage_one_file_type, $allowed_types)) {
+            // IF THE UPLOADED FILE IS VALID
             $stage_one_file_hash = hash('sha512', $stage_one_file);
             Session::set('stage_one_file_hash', $stage_one_file_hash);
         } else {
             // REDIRECTING THE USER TO THE DASHBOARD
             redirect('http://localhost/ib-fyp/dashboard/analysis/stage-one');
         }
-
         redirect('http://localhost/ib-fyp/dashboard/analysis/stage-two');
     }
 }
