@@ -60,7 +60,6 @@ class HomeController
     }
     public function stage_two()
     {
-        var_dump($_SESSION);
         loadView('stage-two');
     }
     public function stage_three()
@@ -142,5 +141,28 @@ class HomeController
             redirect('http://localhost/ib-fyp/dashboard/analysis/stage-one');
         }
         redirect('http://localhost/ib-fyp/dashboard/analysis/stage-two');
+    }
+    public function analyse_stage_two()
+    {
+        // DEFINING THE VALID FILE TYPES
+        // 0: .txt file
+        // 1: .pdf file
+        // 2: .docx file
+        // 3: .xlsx file
+        $allowed_types = ['text/plain', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+
+        $stage_two_file = $_FILES['stage_two_file']['name'];
+        $stage_two_file_type = $_FILES['stage_two_file']['type'];
+
+        if (in_array($stage_two_file_type, $allowed_types)) {
+            // IF THE UPLOADED FILE IS VALID
+            $stage_two_file_hash = hash('sha512', $stage_two_file);
+            Session::set('stage_two_file_hash', $stage_two_file_hash);
+        } else {
+            // REDIRECTING THE USER TO THE DASHBOARD
+            redirect('http://localhost/ib-fyp/dashboard/analysis/stage-two');
+        }
+
+        redirect('http://localhost/ib-fyp/dashboard/analysis/stage-three');
     }
 }
