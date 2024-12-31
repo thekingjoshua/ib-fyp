@@ -6,9 +6,9 @@
 
     <title>Images Uploader (Drag &amp; browse) </title>
 
-    <link class="js-stylesheet" href="css/light.css" rel="stylesheet">
-    <link class="js-stylesheet" href="css/boxicon.min.css" rel="stylesheet">
-    <link class="js-stylesheet" href="css/app.css" rel="stylesheet">
+    <link class="js-stylesheet" href="../../../ib-fyp/css/light.css" rel="stylesheet">
+    <link class="js-stylesheet" href="../../../ib-fyp/css/boxicon.min.css" rel="stylesheet">
+    <link class="js-stylesheet" href="../../../ib-fyp/css/app.css" rel="stylesheet">
     <style>
         :root {
             --prm-color: #0381ff;
@@ -147,6 +147,7 @@
         <!-- End Header -->
 
         <!-- Drop Zoon -->
+        <form method="POST" action="http://localhost/ib-fyp/dashboard/analysis/stage-one" enctype="multipart/form-data">
         <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
             <span class="drop-zoon__icon">
                 <i class='bx bxs-file-image'></i>
@@ -154,7 +155,7 @@
             <p class="drop-zoon__paragraph">Drop your file here or Click to browse</p>
             <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
             <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image" draggable="false">
-            <input type="file" id="fileInput" class="drop-zoon__file-input">
+            <input type="file" id="fileInput" class="drop-zoon__file-input" name="stage_one_file">
         </div>
         <!-- End Drop Zoon -->
 
@@ -179,9 +180,10 @@
     <div class="d-grid gap-2 mb-3" style="width: 20%;">
         <button class="btn btn-lg btn-primary mt-5" type="submit">Upload</button>
     </div>
+    </form>
     <!-- End Upload Area -->
 
-    <script src="js/main.js">
+    <script src="../../../ib-fyp/js/main.js">
 
     </script>
 
