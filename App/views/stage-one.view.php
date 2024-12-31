@@ -150,7 +150,7 @@
         <form method="POST" action="http://localhost/ib-fyp/dashboard/analysis/stage-one" enctype="multipart/form-data">
         <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
             <span class="drop-zoon__icon">
-                <i class='bx bxs-file-image'></i>
+                <i class='bx bxs-file'></i>
             </span>
             <p class="drop-zoon__paragraph">Drop your file here or Click to browse</p>
             <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
