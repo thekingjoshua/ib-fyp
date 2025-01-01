@@ -169,4 +169,28 @@ class HomeController
 
         redirect('http://localhost/ib-fyp/dashboard/analysis/stage-three');
     }
+
+    public function analyse_stage_three()
+    {
+        // DEFINING THE VALID FILE TYPES
+        // 0: .txt file
+        // 1: .pdf file
+        // 2: .docx file
+        // 3: .xlsx file
+        $allowed_types = ['text/plain', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+
+        $stage_three_file = $_FILES['stage_three_file']['name'];
+        $stage_three_file_type = $_FILES['stage_three_file']['type'];
+
+        if (in_array($stage_three_file_type, $allowed_types)) {
+            // IF THE UPLOADED FILE IS VALID
+            $stage_three_file_hash = hash('sha512', $stage_three_file);
+            Session::set('stage_three_file_hash', $stage_three_file_hash);
+        } else {
+            // REDIRECTING THE USER TO THE DASHBOARD
+            redirect('http://localhost/ib-fyp/dashboard/analysis/stage-two');
+        }
+
+        redirect('http://localhost/ib-fyp/dashboard/analysis/result');
+    }
 }
