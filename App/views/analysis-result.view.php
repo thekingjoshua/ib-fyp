@@ -249,7 +249,25 @@ $analysis_result = Session::get('analysis_result');
                         <h1><?= floor($analysis_result) ?></h1>
                         <p>of 100</p>
                     </div>
-                    <h2 class="great"></h2>
+                    <h2 class="great"><?php
+                                        switch (intval($analysis_result)) {
+                                            case 0:
+                                                echo 'Corrupt';
+                                                break;
+                                            case 33:
+                                                echo 'Compromised';
+                                                break;
+                                            case 66:
+                                                echo 'Partially Intact';
+                                                break;
+                                            case 100:
+                                                echo 'Fully Intact';
+                                                break;
+                                            default:
+                                                echo 'Corrupt';
+                                                break;
+                                        }
+                                        ?></h2>
                 </div>
                 <div class="col-lg-6" id="right">
                     <h3>Details</h3>
