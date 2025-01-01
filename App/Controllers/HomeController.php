@@ -96,7 +96,7 @@ class HomeController
         $file_type = mime_content_type($original_file_temp);
 
         // HASHING THE UPLOADED FILE USING SHA-512 ALGORITHM
-        $originalFileHash = hash('sha512', $fullFileName);
+        $originalFileHash = hash('sha512', $original_file);
         $params = [
             "original_file_hash" => $originalFileHash,
             "case_file_name" => $caseFileName,
@@ -105,7 +105,7 @@ class HomeController
         ];
         if (in_array($file_type, $allowed_types)) {
             // UPLOADING THE FILE TO THE UPLOAD FOLDER IF IT IS A VALID FILE TYPE
-            move_uploaded_file($original_file_temp, "uploads/$fullFileName");
+            // move_uploaded_file($original_file_temp, "uploads/$fullFileName");
 
             // SUBMITTING THE FILE TO THE DATABASE IF IT IS A VALID FILE TYPE
             $this->db->query("INSERT INTO `original_case_files` (`file_hash`, `case_file_name`, `investigator`, `case_file_path`) VALUES (:original_file_hash, :case_file_name, :investigator_name, :original_file_path)", $params);
@@ -172,6 +172,36 @@ class HomeController
 
     public function analyse_stage_three()
     {
+        $stageOneScore = 0;
+        $stageTwoScore = 0;
+        $stageThreeScore = 0;
+
+        $originalFileHash = $this->db->query("SELECT * FROM original_case_files WHERE id = 5")->fetch()->file_hash;
+
+        $stageOneFileHash = Session::get('stage_one_file_hash');
+        $stageTwoFileHash = Session::get('stage_two_file_hash');
+        $stageThreeFileHash = Session::get('stage_three_file_hash');
+
+        if(Validation::match($stageOneFileHash, $originalFileHash)){
+            $stageOneScore = 100;
+        }
+        if(Validation::match($stageTwoFileHash, $originalFileHash)){
+            $stageTwoScore = 100;
+        }
+        if(Validation::match($stageThreeFileHash, $originalFileHash)){
+            $stageThreeScore = 100;
+        }
+
+        $totalScore = $stageOneScore + $stageTwoScore + $stageThreeScore;
+
+        $analysisResult = $totalScore / 3 ;
+
+
+        Session::set('stage_one_score', $stageOneScore);
+        Session::set('stage_two_score', $stageTwoScore);
+        Session::set('stage_three_score', $stageThreeScore);
+        Session::set('analysis_result', $analysisResult);
+
         // DEFINING THE VALID FILE TYPES
         // 0: .txt file
         // 1: .pdf file
