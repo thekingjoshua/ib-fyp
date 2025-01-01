@@ -1,3 +1,14 @@
+<?php
+
+use Framework\Session;
+
+$stage_one_result = Session::get('stage_one_score');
+$stage_two_result = Session::get('stage_two_score');
+$stage_three_result = Session::get('stage_three_score');
+$analysis_result = Session::get('analysis_result');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +59,7 @@
             margin-top: 70px;
             position: absolute;
             z-index: 1;
-            background: linear-gradient(to bottom,rgb(96, 175, 253), #0381ff);
+            background: linear-gradient(to bottom, rgb(96, 175, 253), #0381ff);
             /* background: #0381ff; */
         }
 
@@ -82,7 +93,7 @@
             color: white;
             font-size: 3.2rem;
         }
-        
+
         #circle p {
             padding-top: 0px;
             font-size: 1rem;
@@ -235,24 +246,24 @@
                     <h5>Analysis Result</h5>
 
                     <div id="circle">
-                        <h1>76</h1>
+                        <h1><?= floor($analysis_result) ?></h1>
                         <p>of 100</p>
                     </div>
-                    <h2 class="great">Great</h2>
+                    <h2 class="great"></h2>
                 </div>
                 <div class="col-lg-6" id="right">
                     <h3>Details</h3>
                     <p class="reac">
                         Stage 1
-                        <span><b>80</b> / 100</span>
+                        <span><b><?= $stage_one_result ?></b> / 100</span>
                     </p>
                     <p class="mem">
                         Stage 2
-                        <span><b>92</b> / 100</span>
+                        <span><b> <?= $stage_two_result ?></b> / 100</span>
                     </p>
                     <p class="ver">
                         Stage 3
-                        <span><b>61</b> / 100</span>
+                        <span><b> <?= $stage_three_result ?></b> / 100</span>
                     </p>
                     <button>Continue</button>
                 </div>
