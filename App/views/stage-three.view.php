@@ -66,7 +66,6 @@
         }
 
         #progress {
-            -webkit-appearance: none;
             position: absolute;
             width: 95%;
             z-index: 5;
@@ -147,14 +146,15 @@
         <!-- End Header -->
 
         <!-- Drop Zoon -->
+        <form method="POST" action="http://localhost/ib-fyp/dashboard/analysis/stage-three" enctype="multipart/form-data">
         <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
             <span class="drop-zoon__icon">
-                <i class='bx bxs-file-image'></i>
+                <i class='bx bxs-file'></i>
             </span>
             <p class="drop-zoon__paragraph">Drop your file here or Click to browse</p>
             <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
             <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image" draggable="false">
-            <input type="file" id="fileInput" class="drop-zoon__file-input">
+            <input type="file" id="fileInput" class="drop-zoon__file-input" name="stage_three_file">
         </div>
         <!-- End Drop Zoon -->
 
@@ -179,6 +179,7 @@
     <div class="d-grid gap-2 mb-3" style="width: 20%;">
         <button class="btn btn-lg btn-primary mt-5" type="submit">Upload</button>
     </div>
+    </form>
     <!-- End Upload Area -->
 
     <script src="../../../ib-fyp/js/main.js">
