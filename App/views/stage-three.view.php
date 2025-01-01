@@ -6,9 +6,9 @@
 
     <title>Images Uploader (Drag &amp; browse) </title>
 
-    <link class="js-stylesheet" href="css/light.css" rel="stylesheet">
-    <link class="js-stylesheet" href="css/boxicon.min.css" rel="stylesheet">
-    <link class="js-stylesheet" href="css/app.css" rel="stylesheet">
+    <link class="js-stylesheet" href="../../../ib-fyp/css/light.css" rel="stylesheet">
+    <link class="js-stylesheet" href="../../../ib-fyp/css/boxicon.min.css" rel="stylesheet">
+    <link class="js-stylesheet" href="../../../ib-fyp/css/app.css" rel="stylesheet">
     <style>
         :root {
             --prm-color: #0381ff;
@@ -181,7 +181,7 @@
     </div>
     <!-- End Upload Area -->
 
-    <script src="js/main.js">
+    <script src="../../../ib-fyp/js/main.js">
 
     </script>
 
