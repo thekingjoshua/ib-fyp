@@ -66,6 +66,10 @@ class HomeController
     {
         loadView('stage-three');
     }
+    public function analysis_result()
+    {
+        loadView('analysis-result');
+    }
     public function dashboard()
     {
         loadView('home');
