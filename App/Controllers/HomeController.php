@@ -68,6 +68,7 @@ class HomeController
     }
     public function analysis_result()
     {
+        Session::clearAll();
         loadView('analysis-result');
     }
     public function dashboard()
