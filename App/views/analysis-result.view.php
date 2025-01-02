@@ -135,8 +135,6 @@ $analysis_result = Session::get('analysis_result');
         }
 
         #right .reac {
-            color: hsl(0, 100%, 67%);
-            background-color: hsl(0, 100%, 67%, 0.1);
             margin-left: 60px;
             height: 50px;
             width: 300px;
@@ -150,8 +148,6 @@ $analysis_result = Session::get('analysis_result');
         }
 
         #right .mem {
-            color: hsl(39, 100%, 56%);
-            background-color: hsl(39, 100%, 56%, 0.1);
             margin-left: 60px;
             height: 50px;
             width: 300px;
@@ -165,8 +161,6 @@ $analysis_result = Session::get('analysis_result');
         }
 
         #right .ver {
-            color: hsl(166, 100%, 37%);
-            background-color: hsl(166, 100%, 37%, 0.1);
             margin-left: 60px;
             height: 50px;
             width: 300px;
@@ -235,6 +229,16 @@ $analysis_result = Session::get('analysis_result');
                 width: 100%;
             }
         }
+
+        .corrupted {
+            color: hsl(0, 100%, 67%);
+            background-color: hsl(0, 100%, 67%, 0.1);
+        }
+
+        .fully-intact {
+            color: hsl(166, 100%, 37%);
+            background-color: hsl(166, 100%, 37%, 0.1);
+        }
     </style>
 </head>
 
@@ -271,15 +275,51 @@ $analysis_result = Session::get('analysis_result');
                 </div>
                 <div class="col-lg-6" id="right">
                     <h3>Details</h3>
-                    <p class="reac">
+                    <p class="reac <?php
+                                    switch (intval($stage_one_result)) {
+                                        case 0:
+                                            echo 'corrupted';
+                                            break;
+                                        case 100:
+                                            echo 'fully-intact';
+                                            break;
+                                        default:
+                                            echo 'corrupt';
+                                            break;
+                                    }
+                                    ?>">
                         Stage 1
                         <span><b><?= $stage_one_result ?></b> / 100</span>
                     </p>
-                    <p class="mem">
+                    <p class="mem <?php
+                                    switch (intval($stage_two_result)) {
+                                        case 0:
+                                            echo 'corrupted';
+                                            break;
+                                        case 100:
+                                            echo 'fully-intact';
+                                            break;
+                                        default:
+                                            echo 'corrupt';
+                                            break;
+                                    }
+                                    ?>">
                         Stage 2
                         <span><b> <?= $stage_two_result ?></b> / 100</span>
                     </p>
-                    <p class="ver">
+                    <p class="ver <?php
+                                    switch (intval($stage_three_result)) {
+                                        case 0:
+                                            echo 'corrupted';
+                                            break;
+                                        case 100:
+                                            echo 'fully-intact';
+                                            break;
+                                        default:
+                                            echo 'corrupt';
+                                            break;
+                                    }
+                                    ?>">
                         Stage 3
                         <span><b> <?= $stage_three_result ?></b> / 100</span>
                     </p>
