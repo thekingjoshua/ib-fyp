@@ -220,6 +220,14 @@ class HomeController
         $totalScore = $stageOneScore + $stageTwoScore + $stageThreeScore;
         $analysisResult = $totalScore / 3 ;
 
+        // SUBMITTING ANALYSIS RESULT TO THE DATABASE
+        $params = [
+            "stage_one_results" => $stageOneScore,
+            "stage_two_results" => $stageTwoScore,
+            "stage_three_results" => $stageThreeScore,
+            "analysis_result" => $analysisResult
+        ];
+        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result)", $params);
         Session::set('stage_one_score', $stageOneScore);
         Session::set('stage_two_score', $stageTwoScore);
         Session::set('stage_three_score', $stageThreeScore);
