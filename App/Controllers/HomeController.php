@@ -128,6 +128,7 @@ class HomeController
     }
     public function analyse_stage_one()
     {
+        var_dump($_POST);
         // DEFINING THE VALID FILE TYPES
         // 0: .txt file
         // 1: .pdf file
@@ -137,11 +138,13 @@ class HomeController
 
         $stage_one_file = $_FILES['stage_one_file']['name'];
         $stage_one_file_type = $_FILES['stage_one_file']['type'];
+        $original_case_file_ID = $_POST['select_original_case_file'];
 
         if (in_array($stage_one_file_type, $allowed_types)) {
             // IF THE UPLOADED FILE IS VALID
             $stage_one_file_hash = hash('sha512', $stage_one_file);
             Session::set('stage_one_file_hash', $stage_one_file_hash);
+            Session::set('original_case_file_ID', $original_case_file_ID);
         } else {
             // REDIRECTING THE USER TO THE DASHBOARD
             redirect('http://localhost/ib-fyp/dashboard/analysis/stage-one');
@@ -196,8 +199,9 @@ class HomeController
         $stageOneScore = 0;
         $stageTwoScore = 0;
         $stageThreeScore = 0;
+        $originalCaseFileID = Session::get('original_case_file_ID');
 
-        $originalFileHash = $this->db->query("SELECT * FROM original_case_files WHERE id = 5")->fetch()->file_hash;
+        $originalFileHash = $this->db->query("SELECT * FROM original_case_files WHERE id = $originalCaseFileID")->fetch()->file_hash;
 
         $stageOneFileHash = Session::get('stage_one_file_hash');
         $stageTwoFileHash = Session::get('stage_two_file_hash');
