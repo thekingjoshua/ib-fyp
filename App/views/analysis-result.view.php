@@ -323,7 +323,7 @@ $analysis_result = Session::get('analysis_result');
                         Stage 3
                         <span><b> <?= $stage_three_result ?></b> / 100</span>
                     </p>
-                    <button>Continue</button>
+                    <button><a href="http://localhost/ib-fyp/dashboard" style="text-decoration: none; color: #ffffff;">Back to dashboard</a></button>
                 </div>
             </div>
         </div>
