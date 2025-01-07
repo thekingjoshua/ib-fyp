@@ -56,7 +56,9 @@ class HomeController
     }
     public function stage_one()
     {
-        loadView('stage-one');
+        $originalCaseFiles = $this->db->query("SELECT * FROM original_case_files")->fetchAll();
+
+        loadView('stage-one', ["originalCaseFiles" => $originalCaseFiles]);
     }
     public function stage_two()
     {
