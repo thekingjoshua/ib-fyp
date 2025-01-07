@@ -178,6 +178,7 @@
             <!-- End File Details -->
     </div>
     <div class="d-grid gap-2 mb-3" style="width: 20%;">
+        <input type="text" class="form-control" placeholder="Investigator's Name" required name="investigator_name">
         <select class="form-control" name="select_original_case_file">
             <option selected>Select Original Case File</option>
             <?php foreach ($originalCaseFiles as $originalCaseFile): ?>
