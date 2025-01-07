@@ -141,12 +141,14 @@ class HomeController
         $original_case_file_ID = $_POST['select_original_case_file'];
         $investigator_name = $_POST['investigator_name'];
 
+        $original_case_file_name = $this->db->query("SELECT * FROM original_case_files WHERE id = $original_case_file_ID")->fetch()->case_file_name;
         if (in_array($stage_one_file_type, $allowed_types)) {
             // IF THE UPLOADED FILE IS VALID
             $stage_one_file_hash = hash('sha512', $stage_one_file);
             Session::set('stage_one_file_hash', $stage_one_file_hash);
             Session::set('original_case_file_ID', $original_case_file_ID);
             Session::set('investigator_name', $investigator_name);
+            Session::set('original_case_file_name', $original_case_file_name);
         } else {
             // REDIRECTING THE USER TO THE DASHBOARD
             redirect('http://localhost/ib-fyp/dashboard/analysis/stage-one');
@@ -209,6 +211,7 @@ class HomeController
         $stageOneFileHash = Session::get('stage_one_file_hash');
         $stageTwoFileHash = Session::get('stage_two_file_hash');
         $stageThreeFileHash = Session::get('stage_three_file_hash');
+        $original_case_file_name = Session::get('original_case_file_name');
 
         if(Validation::match($stageOneFileHash, $originalFileHash)){
             $stageOneScore = 100;
@@ -221,7 +224,7 @@ class HomeController
         }
 
         $totalScore = $stageOneScore + $stageTwoScore + $stageThreeScore;
-        $analysisResult = $totalScore / 3 ;
+        $analysisResult = floor($totalScore / 3) ;
 
         // SUBMITTING ANALYSIS RESULT TO THE DATABASE
         $params = [
@@ -229,9 +232,10 @@ class HomeController
             "stage_two_results" => $stageTwoScore,
             "stage_three_results" => $stageThreeScore,
             "analysis_result" => $analysisResult,
-            "investigator_name" => $investigator_name
+            "investigator_name" => $investigator_name,
+            "original_case_file_name" => $original_case_file_name
         ];
-        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`, `investigator_name`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result, :investigator_name)", $params);
+        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`, `investigator_name`, `file_name`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result, :investigator_name, :original_case_file_name)", $params);
         Session::set('stage_one_score', $stageOneScore);
         Session::set('stage_two_score', $stageTwoScore);
         Session::set('stage_three_score', $stageThreeScore);
