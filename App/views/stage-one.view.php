@@ -178,7 +178,7 @@
             <!-- End File Details -->
     </div>
     <div class="d-grid gap-2 mb-3" style="width: 20%;">
-        <select class="form-control">
+        <select class="form-control" name="select_original_case_file">
             <option selected>Select Original Case File</option>
             <?php foreach ($originalCaseFiles as $originalCaseFile): ?>
                 <option value="<?= $originalCaseFile->id ?>"><?= $originalCaseFile->case_file_name ?></option>
