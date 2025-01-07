@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="preconnect" href="https://fonts.gstatic.com/">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-	
+
 	<title>Dashboard</title>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet">
@@ -138,7 +138,7 @@
 								<table class="table table-borderless my-0">
 									<thead>
 										<tr>
-											<th>File Name</th>
+											<th>Case File Name</th>
 											<th>Integrity (%)</th>
 											<th>Investigator's Name</th>
 											<th>Date Analysed</th>
@@ -146,21 +146,40 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												<div class="d-flex">
-													<div class="flex-grow-1 ms-3">
-														<strong>Project Apollo Case</strong>
+										<?php foreach ($originalCaseFiles as $originalCaseFile): ?>
+											<tr>
+												<td>
+													<div class="d-flex">
+														<div class="flex-grow-1 ms-3">
+															<strong><?= $originalCaseFile->file_name ?></strong>
+														</div>
 													</div>
-												</div>
-											</td>
-											<td><strong class="text-success">80%</strong></td>
-											<td><strong>John Doe</strong></td>
-											<td>27.12.2024</td>
-											<td class="d-none d-xl-table-cell">
-												<a href="#" class="btn btn-light">View</a>
-											</td>
-										</tr>
+												</td>
+												<!-- 
+												0
+												33
+												66
+												100
+												-->
+												<td><strong class="
+													<?php if ($originalCaseFile->analysis_result === '0') {
+														echo 'text-danger';
+													} elseif ($originalCaseFile->analysis_result === '33') {
+														echo 'text-warning';
+													} elseif ($originalCaseFile->analysis_result === '66') {
+														echo 'text-primary';
+													} elseif ($originalCaseFile->analysis_result === '100') {
+														echo 'text-success';
+													}
+													?>
+												"><?= $originalCaseFile->analysis_result ?>%</strong></td>
+												<td><strong><?= $originalCaseFile->investigator_name ?></strong></td>
+												<td><?= $originalCaseFile->analysis_date ?></td>
+												<td class="d-none d-xl-table-cell">
+													<a href="#" class="btn btn-light">View</a>
+												</td>
+											</tr>
+										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
