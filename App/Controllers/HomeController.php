@@ -71,6 +71,10 @@ class HomeController
     {
         loadView('analysis-result');
     }
+    public function analysis(){
+        $analysisResults = $this->db->query("SELECT * FROM analysis_results")->fetchAll();
+        loadView('analysis', ['analysisResults' => $analysisResults]);
+    }
     public function dashboard()
     {
         $originalCaseFiles = $this->db->query("SELECT * FROM analysis_results")->fetchAll();
