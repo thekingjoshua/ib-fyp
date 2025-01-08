@@ -138,6 +138,7 @@
 								<table class="table table-borderless my-0">
 									<thead>
 										<tr>
+											<th>Unique ID</th>
 											<th>Case File Name</th>
 											<th>Integrity (%)</th>
 											<th>Investigator's Name</th>
@@ -148,6 +149,7 @@
 									<tbody>
 										<?php foreach ($originalCaseFiles as $originalCaseFile): ?>
 											<tr>
+											<td><strong>#<?= $originalCaseFile->unique_id ?></strong></td>
 												<td>
 													<div class="d-flex">
 														<div class="flex-grow-1 ms-3">
@@ -155,12 +157,6 @@
 														</div>
 													</div>
 												</td>
-												<!-- 
-												0
-												33
-												66
-												100
-												-->
 												<td><strong class="
 													<?php if ($originalCaseFile->analysis_result === '0') {
 														echo 'text-danger';
