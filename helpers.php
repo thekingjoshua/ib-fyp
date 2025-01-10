@@ -122,7 +122,7 @@ function numberFormatter(int $value)
     return $formattedNumber;
 }
 function generateRandomString($length = 5) {
-    $characters = 'abcdefghijklmnopqrstuvwxyz';
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';
 
     for ($i = 0; $i < $length; $i++) {
