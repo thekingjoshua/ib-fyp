@@ -108,14 +108,15 @@ class HomeController
             "original_file_hash" => $originalFileHash,
             "case_file_name" => $caseFileName,
             "investigator_name" => $investigatorName,
-            "original_file_path" => "uploads/$fullFileName"
+            "original_file_path" => "uploads/$fullFileName",
+            "original_file_unique_id" => generateRandomString(7)
         ];
         if (in_array($file_type, $allowed_types)) {
             // UPLOADING THE FILE TO THE UPLOAD FOLDER IF IT IS A VALID FILE TYPE
             // move_uploaded_file($original_file_temp, "uploads/$fullFileName");
 
             // SUBMITTING THE FILE TO THE DATABASE IF IT IS A VALID FILE TYPE
-            $this->db->query("INSERT INTO `original_case_files` (`file_hash`, `case_file_name`, `investigator`, `case_file_path`) VALUES (:original_file_hash, :case_file_name, :investigator_name, :original_file_path)", $params);
+            $this->db->query("INSERT INTO `original_case_files` (`file_hash`, `case_file_name`, `investigator`, `case_file_path`, `unique_id`) VALUES (:original_file_hash, :case_file_name, :investigator_name, :original_file_path, :original_file_unique_id)", $params);
             // 
             loadView('upload-original');
         } else {
@@ -237,9 +238,10 @@ class HomeController
             "stage_three_results" => $stageThreeScore,
             "analysis_result" => $analysisResult,
             "investigator_name" => $investigator_name,
-            "original_case_file_name" => $original_case_file_name
+            "original_case_file_name" => $original_case_file_name,
+            "original_file_unique_id" => generateRandomString(7)
         ];
-        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`, `investigator_name`, `file_name`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result, :investigator_name, :original_case_file_name)", $params);
+        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`, `investigator_name`, `file_name`, `unique_id`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result, :investigator_name, :original_case_file_name, :original_file_unique_id)", $params);
         Session::set('stage_one_score', $stageOneScore);
         Session::set('stage_two_score', $stageTwoScore);
         Session::set('stage_three_score', $stageThreeScore);
