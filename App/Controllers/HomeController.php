@@ -231,6 +231,8 @@ class HomeController
         $totalScore = $stageOneScore + $stageTwoScore + $stageThreeScore;
         $analysisResult = floor($totalScore / 3) ;
 
+        $generatedAnalysisID = generateRandomString(7);
+
         // SUBMITTING ANALYSIS RESULT TO THE DATABASE
         $params = [
             "stage_one_results" => $stageOneScore,
@@ -239,13 +241,14 @@ class HomeController
             "analysis_result" => $analysisResult,
             "investigator_name" => $investigator_name,
             "original_case_file_name" => $original_case_file_name,
-            "original_file_unique_id" => generateRandomString(7)
+            "analysis_file_unique_id" => $generatedAnalysisID
         ];
-        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`, `investigator_name`, `file_name`, `unique_id`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result, :investigator_name, :original_case_file_name, :original_file_unique_id)", $params);
+        $this->db->query("INSERT INTO `analysis_results` (`stage_one_results`, `stage_two_results`, `stage_three_results`, `analysis_result`, `investigator_name`, `file_name`, `unique_id`) VALUES (:stage_one_results, :stage_two_results, :stage_three_results, :analysis_result, :investigator_name, :original_case_file_name, :analysis_file_unique_id)", $params);
         Session::set('stage_one_score', $stageOneScore);
         Session::set('stage_two_score', $stageTwoScore);
         Session::set('stage_three_score', $stageThreeScore);
         Session::set('analysis_result', $analysisResult);
+        Session::set('generated_analyis_ID', $generatedAnalysisID);
 
         redirect('http://localhost/ib-fyp/dashboard/analysis/result');
     }
