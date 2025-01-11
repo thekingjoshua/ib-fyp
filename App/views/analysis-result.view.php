@@ -324,11 +324,37 @@ $analysis_result = Session::get('analysis_result');
                         <span><b> <?= $stage_three_result ?></b> / 100</span>
                     </p>
                     <button><a href="http://localhost/ib-fyp/dashboard" style="text-decoration: none; color: #ffffff;">Back to dashboard</a></button>
+                    <button class="mt-4 download_btn">Download as PDF</button>
                 </div>
             </div>
         </div>
 
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const downloadBtn = document.querySelector('.download_btn');
+        const element = document.querySelector('.row');
+        <?php $analysis_case_file_ID = Session::get('generated_analyis_ID'); ?>
+        var opt = {
+            margin: 0,
+            filename: '<?= $analysis_case_file_ID ?> - Analysis File.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 5
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'landscape'
+            }
+        };
+        downloadBtn.addEventListener('click', function() {
+            html2pdf(element, opt);
+        })
+    </script>
 </body>
 
 </html>
