@@ -17,6 +17,7 @@ $router->get("{$baseURI[1]}/dashboard/analysis/stage-two", 'HomeController@stage
 $router->get("{$baseURI[1]}/dashboard/analysis/stage-three", 'HomeController@stage_three');
 $router->get("{$baseURI[1]}/dashboard/analysis/result", 'HomeController@analysis_result');
 $router->get("{$baseURI[1]}/dashboard/analysis", 'HomeController@analysis');
+$router->get("{$baseURI[1]}/dashboard/analysis/view/result/{id}", 'HomeController@view_analysis_result');
 
 
 
